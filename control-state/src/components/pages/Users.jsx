@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 import { SearchInput } from "../molecules/SeachInput";
 import { UserCard } from "../organisms/user/UserCard";
@@ -17,7 +18,7 @@ const users = [...Array(10).keys()].map((val) => {
   };
 });
 
-export const Users = () => {
+export const Users = memo(() => {
   return (
     <SContainer>
       <h2>ユーザーページです。</h2>
@@ -29,7 +30,7 @@ export const Users = () => {
       </SUserArea>
     </SContainer>
   );
-};
+});
 
 const SContainer = styled.div`
   text-align: center;
