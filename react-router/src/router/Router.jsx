@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Home } from "../Home";
-import { Page2 } from "../Page2";
 import { page1Routes } from "./Page1Routes";
+import { Page2Routes } from "./Page2Routes";
 
 export const Router = () => {
   return (
@@ -16,7 +16,15 @@ export const Router = () => {
           />
         );
       })}
-      <Route path="/page2" element={<Page2 />} />
+      {Page2Routes.map((route) => {
+        return (
+          <Route
+            key={route.path}
+            path={`page2${route.path}`}
+            element={route.children}
+          />
+        );
+      })}
     </Routes>
   );
 };
