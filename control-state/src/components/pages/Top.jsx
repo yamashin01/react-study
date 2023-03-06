@@ -1,13 +1,20 @@
 import styled from "styled-components";
 import { SecondaryButton } from "../atoms/button/SecondaryButton";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserProvider";
 
 export const Top = () => {
   const navigate = useNavigate();
-  console.log(navigate);
-  const onClickAsAdmin = () => navigate("/users", { state: { admin: true } });
-  const onClickAsGeneral = () =>
-    navigate("/users", { state: { admin: false } });
+  const { setUserInfo } = useContext(UserContext);
+  const onClickAsAdmin = () => {
+    setUserInfo({ isAdmin: true });
+    navigate("/users");
+  };
+  const onClickAsGeneral = () => {
+    setUserInfo({ isAdmin: false });
+    navigate("/users");
+  };
   return (
     <SContainer>
       <h2>Topページです。</h2>
