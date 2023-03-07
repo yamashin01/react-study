@@ -1,11 +1,11 @@
-import { UserProvider } from "./providers/UserProvider";
 import { Router } from "./router/Router";
 import "./styles.css";
+import { RecoilRoot } from "recoil";
 
 export default function App() {
   return (
-    <UserProvider>
+    <RecoilRoot>
       <Router />
-    </UserProvider>
+    </RecoilRoot>
   );
 }

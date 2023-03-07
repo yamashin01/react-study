@@ -1,5 +1,8 @@
 import { memo } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { userState } from "../../store/UserStore";
+import { SecondaryButton } from "../atoms/button/SecondaryButton";
 import { SearchInput } from "../molecules/SeachInput";
 import { UserCard } from "../organisms/user/UserCard";
 
@@ -19,10 +22,15 @@ const users = [...Array(10).keys()].map((val) => {
 });
 
 export const Users = memo(() => {
+  const [userInfo, setUserInfo] = useRecoilState(userState);
+
+  const onCLickSwitch = () => setUserInfo({ isAdmin: !userInfo.isAdmin });
   return (
     <SContainer>
-      <h2>ユーザーページです。</h2>
+      <h2>ユーザー一覧</h2>
       <SearchInput />
+      <br />
+      <SecondaryButton onClick={onCLickSwitch}>切り替え</SecondaryButton>
       <SUserArea>
         {users.map((user) => {
           return <UserCard key={user.id} user={user} />;
